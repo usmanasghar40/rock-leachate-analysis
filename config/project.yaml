@@ -1,0 +1,24 @@
+data:
+  path: data/raw/leachate.csv
+  rock_id_col: rock_id
+  time_col: timestamp
+  target_col: target
+
+features:
+  lags: [1, 2, 3]
+  rolling_windows: [3, 5]
+
+model:
+  type: xgboost
+  params:
+    n_estimators: 500
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.9
+    colsample_bytree: 0.9
+    random_state: 42
+
+training:
+  test_size: 0.2
+  output_model_path: models/xgb_leachate.joblib
+  output_features_path: models/feature_columns.json
